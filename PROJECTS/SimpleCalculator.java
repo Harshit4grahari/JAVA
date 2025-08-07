@@ -39,7 +39,7 @@ public class SimpleCalculator {
                     result = num1 / num2;
                     System.out.println("Result: " + result);
                 } else {
-                    System.out.println("❌ Cannot divide by zero!");
+                    System.out.println(" Cannot divide by zero!");
                 }
                 break;
 
@@ -48,12 +48,12 @@ public class SimpleCalculator {
                     result = num1 % num2;
                     System.out.println("Result: " + result);
                 } else {
-                    System.out.println("❌ Cannot find modulus by zero!");
+                    System.out.println(" Cannot find modulus by zero!");
                 }
                 break;
 
             default:
-                System.out.println("❌ Invalid operator!");
+                System.out.println(" Invalid operator!");
         }
 
         scanner.close();
