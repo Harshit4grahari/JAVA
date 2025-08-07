@@ -1,29 +1,30 @@
 package OOPS;
 
-// Parent (superclass)
-class Animal {
-    void eat() {
-        System.out.println("This animal eats food");
+// Superclass
+class Vehicle {
+    void start() {
+        System.out.println("Vehicle is starting");
     }
 
-    void sleep() {
-        System.out.println("This animal sleeps");
+    void stop() {
+        System.out.println("Vehicle is stopping");
     }
 }
 
-// Child (subclass) - inherits Animal
-class Dog extends Animal {
-    void bark() {
-        System.out.println("The dog barks");
+// Subclass
+class Car extends Vehicle {
+    void drive() {
+        System.out.println("Car is driving");
     }
 }
 
 // Main class
 public class InheritanceExample {
     public static void main(String[] args) {
-        Dog d = new Dog();
-        d.eat();    // inherited method
-        d.sleep();  // inherited method
-        d.bark();   // child class method
+        Car myCar = new Car();
+
+        myCar.start();   // Inherited from Vehicle
+        myCar.drive();   // From Car
+        myCar.stop();    // Inherited from Vehicle
     }
 }
