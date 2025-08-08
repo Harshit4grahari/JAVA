@@ -53,7 +53,7 @@ public class SimpleCalculator {
                 break;
 
             default:
-                System.out.println(" Invalid operator!");
+                System.out.println("Invalid operator!");
         }
 
         scanner.close();
