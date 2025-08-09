@@ -53,4 +53,30 @@ public class TreeMaps {
     }
 }
 
+/* #Key Features
+1.Sorted by Key
+>Automatically orders entries ascending by default.
+>You can provide a custom Comparator for custom sorting.
 
+2.No Null Keys
+>TreeMap does not allow null keys (throws NullPointerException).
+>But it allows multiple null values.
+
+3.Time Complexity
+>Insertion, deletion, search → O(log n) (because of the Red-Black Tree).
+
+4.Duplicates
+>Keys must be unique.
+>Values can be duplicated.
+
+5.Order Guaranteed
+>Unlike HashMap (unordered) and LinkedHashMap (insertion order), TreeMap is sorted order. */
+
+/* #Advantages
+>Maintains sorted order automatically.
+>Offers range queries (e.g., get all keys less than X).
+>Good for ordered maps.
+
+ #Disadvantages
+>Slower than HashMap for basic operations (O(log n) vs O(1)).
+>Cannot have null keys.*/
