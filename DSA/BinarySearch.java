@@ -71,3 +71,10 @@ public class BinarySearch {
 }
 
 }
+/*Complexity
+Best case: O(1) (found on first try)
+
+Average/Worst case: O(logn)
+
+Space complexity: O(1) for iterative, 
+O(logn) for recursive (stack calls) */
