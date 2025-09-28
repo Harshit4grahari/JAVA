@@ -8,90 +8,109 @@
 
 package DSA;
 
-class Node {
+// TreeNode for BST
+class BSTNode {
     int data;
-    Node left, right;
+    BSTNode left, right;
 
-    public Node(int data) {
-        this.data = data;
+    public BSTNode(int value) {
+        this.data = value;
         this.left = this.right = null;
     }
 }
 
 public class BSTExtraExample {
+    BSTNode root;
 
     // Insert into BST
-    public static Node insert(Node root, int key) {
-        if (root == null) {
-            return new Node(key);
+    BSTNode insert(BSTNode node, int value) {
+        if (node == null) {
+            return new BSTNode(value);
         }
-        if (key < root.data) {
-            root.left = insert(root.left, key);
-        } else if (key > root.data) {
-            root.right = insert(root.right, key);
+        if (value < node.data) {
+            node.left = insert(node.left, value);
+        } else if (value > node.data) {
+            node.right = insert(node.right, value);
         }
-        return root;
+        return node;
     }
 
-    // Height of tree
-    public static int height(Node root) {
-        if (root == null) return 0;
-        return 1 + Math.max(height(root.left), height(root.right));
+    // Search in BST
+    boolean search(BSTNode node, int key) {
+        if (node == null) return false;
+        if (node.data == key) return true;
+        if (key < node.data) return search(node.left, key);
+        return search(node.right, key);
     }
 
-    // Diameter of tree
-    public static int diameter(Node root) {
-        if (root == null) return 0;
+    // Delete from BST
+    BSTNode delete(BSTNode node, int key) {
+        if (node == null) return null;
 
-        int leftHeight = height(root.left);
-        int rightHeight = height(root.right);
-
-        int leftDiameter = diameter(root.left);
-        int rightDiameter = diameter(root.right);
-
-        return Math.max(leftHeight + rightHeight + 1, Math.max(leftDiameter, rightDiameter));
+        if (key < node.data) {
+            node.left = delete(node.left, key);
+        } else if (key > node.data) {
+            node.right = delete(node.right, key);
+        } else {
+            // Case 1: No child
+            if (node.left == null && node.right == null) {
+                return null;
+            }
+            // Case 2: One child
+            else if (node.left == null) {
+                return node.right;
+            } else if (node.right == null) {
+                return node.left;
+            }
+            // Case 3: Two children -> inorder successor
+            BSTNode successor = minValueNode(node.right);
+            node.data = successor.data;
+            node.right = delete(node.right, successor.data);
+        }
+        return node;
     }
 
-    // Lowest Common Ancestor (LCA) in BST
-    public static Node LCA(Node root, int n1, int n2) {
-        if (root == null) return null;
-
-        if (root.data > n1 && root.data > n2) {
-            return LCA(root.left, n1, n2);
+    // Helper: Find minimum node in a subtree
+    BSTNode minValueNode(BSTNode node) {
+        BSTNode current = node;
+        while (current.left != null) {
+            current = current.left;
         }
-        if (root.data < n1 && root.data < n2) {
-            return LCA(root.right, n1, n2);
-        }
-        return root; // This is the LCA
+        return current;
     }
 
-    // Inorder Traversal
-    public static void inorder(Node root) {
-        if (root != null) {
-            inorder(root.left);
-            System.out.print(root.data + " ");
-            inorder(root.right);
-        }
+    // Inorder Traversal (sorted order for BST)
+    void inorder(BSTNode node) {
+        if (node == null) return;
+        inorder(node.left);
+        System.out.print(node.data + " ");
+        inorder(node.right);
     }
 
     public static void main(String[] args) {
-        Node root = null;
-        int[] values = {50, 30, 20, 40, 70, 60, 80};
+        BSTExtraExample bst = new BSTExtraExample();
 
-        // Build BST
-        for (int val : values) {
-            root = insert(root, val);
-        }
+        // Insert values
+        bst.root = bst.insert(bst.root, 50);
+        bst.root = bst.insert(bst.root, 30);
+        bst.root = bst.insert(bst.root, 70);
+        bst.root = bst.insert(bst.root, 20);
+        bst.root = bst.insert(bst.root, 40);
+        bst.root = bst.insert(bst.root, 60);
+        bst.root = bst.insert(bst.root, 80);
 
         System.out.print("Inorder Traversal: ");
-        inorder(root);
+        bst.inorder(bst.root);
         System.out.println();
 
-        System.out.println("Height of BST: " + height(root));
-        System.out.println("Diameter of BST: " + diameter(root));
+        // Search
+        System.out.println("Search 40: " + bst.search(bst.root, 40)); // true
+        System.out.println("Search 90: " + bst.search(bst.root, 90)); // false
 
-        int n1 = 20, n2 = 40;
-        Node lca = LCA(root, n1, n2);
-        System.out.println("LCA of " + n1 + " and " + n2 + " is: " + lca.data);
+        // Delete
+        bst.root = bst.delete(bst.root, 50);
+        System.out.print("Inorder after deleting 50: ");
+        bst.inorder(bst.root);
+        System.out.println();
     }
 }

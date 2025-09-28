@@ -17,39 +17,40 @@
 >Visit root */
 
 package DSA;
-// Node structure
-class Node {
-    int data;
-    Node left, right;
 
-    public Node(int value) {
-        data = value;
-        left = right = null;
+// TreeNode structure
+class TreeNode {
+    int data;
+    TreeNode left, right;
+
+    public TreeNode(int value) {
+        this.data = value;
+        this.left = this.right = null;
     }
 }
 
 // Binary Tree class
 class BinaryTree {
-    Node root;
+    TreeNode root;
 
-    // Preorder Traversal
-    void preorder(Node node) {
+    // Preorder Traversal (Root -> Left -> Right)
+    void preorder(TreeNode node) {
         if (node == null) return;
         System.out.print(node.data + " ");
         preorder(node.left);
         preorder(node.right);
     }
 
-    // Inorder Traversal
-    void inorder(Node node) {
+    // Inorder Traversal (Left -> Root -> Right)
+    void inorder(TreeNode node) {
         if (node == null) return;
         inorder(node.left);
         System.out.print(node.data + " ");
         inorder(node.right);
     }
 
-    // Postorder Traversal
-    void postorder(Node node) {
+    // Postorder Traversal (Left -> Right -> Root)
+    void postorder(TreeNode node) {
         if (node == null) return;
         postorder(node.left);
         postorder(node.right);
@@ -69,11 +70,11 @@ public class BinaryTreeTraversal {
              / \
             4   5
         */
-        tree.root = new Node(1);
-        tree.root.left = new Node(2);
-        tree.root.right = new Node(3);
-        tree.root.left.left = new Node(4);
-        tree.root.left.right = new Node(5);
+        tree.root = new TreeNode(1);
+        tree.root.left = new TreeNode(2);
+        tree.root.right = new TreeNode(3);
+        tree.root.left.left = new TreeNode(4);
+        tree.root.left.right = new TreeNode(5);
 
         // Traversals
         System.out.print("Preorder Traversal: ");
@@ -89,6 +90,8 @@ public class BinaryTreeTraversal {
         System.out.println();
     }
 }
+
+
 
 /*Real-life Usage
 Inorder → Used in Binary Search Trees (gives sorted order).
