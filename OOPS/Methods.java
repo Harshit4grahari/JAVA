@@ -9,23 +9,27 @@ class Vehicle {
 
 // Subclass
 class Bike extends Vehicle {
-    // Overriding
+    // Overriding method
     @Override
     void run() {
         System.out.println("Bike is running fast");
     }
 
-    // Overloading
+    // Overloaded method
     void run(String type) {
         System.out.println("Bike type: " + type);
     }
 }
 
-// Main class (must match file name if public)
+// Main class (file name should be Methods.java)
 public class Methods {
     public static void main(String[] args) {
         Bike b = new Bike();
-        b.run();           // overridden method
-        b.run("Sport");    // overloaded method
+
+        // Calling overridden method
+        b.run();
+
+        // Calling overloaded method
+        b.run("Sport");
     }
 }
